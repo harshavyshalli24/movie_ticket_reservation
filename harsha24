@@ -1,0 +1,133 @@
+import java.util.Scanner;
+
+class theatreList
+{
+    String name;
+    public int not=6,rate=100;
+    public int t,ticket,gst=5;
+    
+    public theatreList(String name)
+    {
+        this.name=name;
+    }
+    
+    void bookingCheck()
+    {
+        
+        System.out.println("Enter number of tickets to be booked");
+        Scanner s=new Scanner(System.in);
+        t=s.nextInt();
+      
+        if(t>6)
+        {
+            System.out.println("Sorry only 6 tickets are available");
+            System.out.println("Do you want to continue again? y-1/n-2");
+            Scanner ss=new Scanner(System.in);
+            t=ss.nextInt();
+            bookingCheck();
+        }
+        else
+        {
+            System.out.println("********************");
+            System.out.println("Booking Successfull");
+            System.out.println("********************");
+            System.out.println("Name    : "+name);
+        }
+    }
+    
+     int calculate(int rate)
+    {
+        ticket=(t*gst)+(t*rate);
+        return ticket;
+    }
+}
+
+class SathyamMovie extends theatreList
+{
+    public SathyamMovie(String name) 
+    {
+        super(name);
+        System.out.println("**************************************");
+        System.out.println("***** Welcome to Sathyam Cinemas *****");
+        System.out.println("**************************************");
+        
+        bookingCheck();
+    }
+    
+    void printTicket()
+    {
+        System.out.println("Theatre : Sathyam Cinemas");
+        System.out.println("Movie   : Dear Conrade");
+        System.out.println("GST     : "+ gst*t);
+        System.out.println("Amount  : "+ calculate(100));
+        //calculate(t);
+        
+    }
+}
+
+class InoxMovie extends theatreList
+{
+
+    public InoxMovie(String name) 
+    {
+        super(name);
+        System.out.println("**************************************");
+        System.out.println("******* Welcome to Inox Cinemas ******");
+        System.out.println("**************************************");
+        
+        bookingCheck();
+    }
+    
+    void printTicket()
+    {
+        
+        System.out.println("Theatre : Inox Cinemas");
+        System.out.println("Movie   : Final Destination");
+        System.out.println("GST     : "+ gst*t);
+        System.out.println("Amount  : "+ calculate(150));
+    }
+}
+
+
+public class javaProject 
+{
+
+    public static void main(String[] args) 
+    {
+        String name; 
+        
+        
+        System.out.println("*******************************************************");  
+        System.out.println("********* WELCOME TO MOVIE RESERVATION SYSTEM *********");
+        System.out.println("*******************************************************");
+        System.out.println("**************** 1. Sathyam Cinemas  ******************");
+        System.out.println("**************** 2. Inox Cinema  **********************");
+        System.out.println("*******************************************************");
+        System.out.println("1.Final Destination -----------------Rs.150------- Inox");
+        System.out.println("2.Dear Comrade ---------------------Rs.100----- Sathyam"); 
+        System.out.println("*******************************************************");
+        
+        System.out.println("Please enter your name");
+        Scanner na=new Scanner(System.in);
+        name=na.nextLine();
+        
+        System.out.println("Which theatre would you like to choose? 1/2");
+        Scanner a=new Scanner(System.in);
+        int choose=a.nextInt();
+        
+        if(choose==1)
+        {
+            SathyamMovie sm = new SathyamMovie(name);
+            sm.printTicket();
+        }
+        else
+        {
+            InoxMovie im = new InoxMovie(name);
+            im.printTicket();
+        }
+        
+        
+        
+    }
+    
+}
